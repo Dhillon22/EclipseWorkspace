@@ -1,0 +1,44 @@
+package testPackage;
+
+
+
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
+
+import org.openqa.selenium.By.ByClassName;
+import org.openqa.selenium.By.ById;
+import org.openqa.selenium.By.ByName;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+
+public class testClass {
+
+	public static void main(String[] args) {
+		 System.setProperty("webdriver.chrome.driver","/Users/infosysuser/Desktop/EclipseWorkspace/chromedriver");
+	WebDriver driver = new ChromeDriver();
+	driver.get("https://www.google.com");
+	WebElement searchBox= driver.findElement(ById.id("lst-ib"));
+	searchBox.clear();
+	searchBox.sendKeys("gmail");
+	WebElement searchButton =  driver.findElement(ByName.name("btnK"));
+	searchButton.click();
+	driver.navigate().back();
+driver.navigate().forward();
+ List<WebElement> element = driver.findElements(ByClassName.className("_NId"));
+ System.out.println(element.size());
+ WebElement element2 = element.get(0);
+ element2.click();
+ System.out.println(element2);
+	System.out.println("This is sample test");
+	
+	}
+	
+	
+	
+	
+	
+}

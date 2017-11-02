@@ -1,0 +1,20 @@
+package testPackage;
+
+
+
+import java.sql.Driver;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class testClass {
+
+	WebDriver driver = new ChromeDriver();
+	driver.get("https://www.google.com");
+	
+	
+	
+	
+	
+	
+}
