@@ -1,4 +1,4 @@
-GitRepositoriesView.GitDirectories=/Users/infosysuser/.git\:
-GitRepositoriesView.GitDirectories.relative=/Users/infosysuser/.git\:
+GitRepositoriesView.GitDirectories=/Users/infosysuser/.git\:/Users/infosysuser/Desktop/EclipseWorkspace/.git\:
+GitRepositoriesView.GitDirectories.relative=/Users/infosysuser/.git\:.git\:
 core_preferredMergeStrategy=jgit-default-mergeStrategy
 eclipse.preferences.version=1

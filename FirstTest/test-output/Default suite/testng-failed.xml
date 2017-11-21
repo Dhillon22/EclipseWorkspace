@@ -5,7 +5,7 @@
     <classes>
       <class name="testPackage.testClass">
         <methods>
-          <include name="demo1"/>
+          <include name="waitTest"/>
           <include name="preExecutionCall"/>
           <include name="postExecutionCall"/>
         </methods>
