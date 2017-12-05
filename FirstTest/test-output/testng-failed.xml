@@ -5,9 +5,9 @@
     <classes>
       <class name="testPackage.testClass">
         <methods>
+          <include name="test"/>
           <include name="preExecutionCall"/>
           <include name="postExecutionCall"/>
-          <include name="iFrameTest"/>
         </methods>
       </class> <!-- testPackage.testClass -->
     </classes>

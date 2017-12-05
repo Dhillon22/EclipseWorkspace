@@ -14,6 +14,7 @@ import java.awt.Point;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
@@ -23,6 +24,10 @@ import java.util.concurrent.TimeUnit;
 
 import javax.xml.xpath.XPath;
 
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.By.ByClassName;
@@ -45,11 +50,20 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import bsh.This;
+import testPackage.constants;
 
 
 
 public class testClass {
-	WebDriver driver;
+	static WebDriver driver;
+	private static XSSFSheet ExcelWSheet;
+	 
+	private static XSSFWorkbook ExcelWBook;
+
+	private static XSSFCell Cell;
+
+	private static XSSFRow Row;
 	
 	public testClass(){
 		System.out.println("this is a default constructor");
@@ -168,17 +182,178 @@ public void postExecutionCall()
 //	driver.manage().window().setPosition(new org.openqa.selenium.Point(200, 50));
 //}
 	
-@Test
-public void iFrameTest(){
-	driver.get("http://www.naukri.com");
-	Wait wait = new WebDriverWait(driver, 10);
-	List<WebElement> iframeElements = driver.findElements(By.tagName("iframe"));
-	//wait.until(ExpectedConditions.visibilityOf(iframeElements[0]));
-	Alert alert = driver.switchTo().alert();
-	alert.dismiss();
-	
-	driver.switchTo().frame("iframe#login-iframe.dspN");
-	
-}	
-	
+/* excel reading
+public static void setExcelFile(String Path,String SheetName) throws Exception {
+
+		try {
+
+			// Open the Excel file
+
+		FileInputStream ExcelFile = new FileInputStream(Path);
+
+		// Access the required test data sheet
+
+		ExcelWBook = new XSSFWorkbook(ExcelFile);
+
+		ExcelWSheet = ExcelWBook.getSheet(SheetName);
+
+		} catch (Exception e){
+
+			throw (e);
+
+		}
+
 }
+
+public static String getCellData(int RowNum, int ColNum) throws Exception{
+
+		try{
+
+			Cell = ExcelWSheet.getRow(RowNum).getCell(ColNum);
+
+			String CellData = Cell.getStringCellValue();
+
+			return CellData;
+
+			}catch (Exception e){
+
+			return"";
+
+			}
+
+}
+public static void setCellData(String Result,  int RowNum, int ColNum) throws Exception	{
+
+		try{
+
+			Row  = ExcelWSheet.getRow(RowNum);
+
+		Cell = Row.getCell(ColNum);
+
+		if (Cell == null) {
+
+			Cell = Row.createCell(ColNum);
+
+			Cell.setCellValue(Result);
+
+			} else {
+
+				Cell.setCellValue(Result);
+
+			}
+
+// Constant variables Test Data path and Test Data file name
+
+				FileOutputStream fileOut = new FileOutputStream(constants.Path_TestData + constants.File_TestData);
+
+				ExcelWBook.write(fileOut);
+
+				fileOut.flush();
+
+				fileOut.close();
+
+			}catch(Exception e){
+
+				throw (e);
+
+		}
+
+	}
+@Test
+public  void test() throws Exception {
+	 
+    //This is to open the Excel file. Excel path, file name and the sheet name are parameters to this method
+
+   setExcelFile(constants.Path_TestData + constants.File_TestData,"Sheet1");
+
+
+    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+    driver.get(constants.URL);
+
+    Execute(driver);
+
+    System.out.println("Login Successfully, now it is the time to Log Off buddy.");
+
+//    Home_Page.lnk_LogOut(driver).click(); 
+
+    driver.quit();
+
+    //This is to send the PASS value to the Excel sheet in the result column.
+
+    setCellData("Pass", 1, 3);
+
+	}
+
+public static void Execute(WebDriver driver) throws Exception{
+	 
+	//This is to get the values from Excel sheet, passing parameters (Row num &amp; Col num)to getCellData method
+
+	String sUserName = getCellData(1, 1);
+
+	String sPassword = getCellData(1, 2);
+System.out.println(sUserName + sPassword);
+	
+//	Home_Page.lnk_MyAccount(driver).click();
+//
+//	LogIn_Page.txtbx_UserName(driver).sendKeys(sUserName);
+//
+//	LogIn_Page.txtbx_Password(driver).sendKeys(sPassword);
+//
+//	LogIn_Page.btn_LogIn(driver).click();
+
+}
+
+
+*/
+
+
+//WEbdriver window handler
+/*
+@Test
+public void windowSwitch(){
+	
+	driver.get("http://toolsqa.com/automation-practice-switch-windows/");
+	driver.findElement(ByXPath.xpath(".//*[@id='button1']")).click();;
+	String  handler= driver.getWindowHandle();
+	Set<String> windows = driver.getWindowHandles();
+	System.out.println(windows);
+	
+	
+
+	 Set handles = driver.getWindowHandles();
+
+	String firstWinHandle = driver.getWindowHandle(); 
+	 
+	 handles.remove(firstWinHandle);
+
+	 String winHandle=handles.iterator().next().toString();
+
+	 if (winHandle!=firstWinHandle){
+
+	 //To retrieve the handle of second window, extracting the handle which does not match to first window handle
+
+	String  secondWinHandle=winHandle; //Storing handle of second window handle
+
+	//Switch control to new window
+
+	
+	 driver.switchTo().window(secondWinHandle).close();
+
+}}
+*/
+
+@Test
+public void windowSwitch(){
+	
+	driver.get("http://toolsqa.com/automation-practice-switch-windows/");
+	driver.findElement(ByXPath.xpath(".//*[@id='alert']")).click();;
+Alert alert = driver.switchTo().alert();
+//alert.accept();
+	
+
+}
+}
+
+	
+
